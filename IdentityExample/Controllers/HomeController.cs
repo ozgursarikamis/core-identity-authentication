@@ -11,12 +11,15 @@ namespace IdentityExample.Controllers
     public class HomeController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signinManager;
 
         public HomeController(
-            UserManager<IdentityUser> userManager
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager
         )
         {
             _userManager = userManager;
+            _signinManager = signInManager;
         }
         public IActionResult Index()
         {
@@ -55,15 +58,25 @@ namespace IdentityExample.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Login(string username, string password)
+        [HttpPost]
+        public async Task<IActionResult> Login(string username, string password)
         {
-            var user = _userManager.FindByNameAsync(username);
+            var user = await _userManager.FindByNameAsync(username);
             if (user != null)
             {
-                //TODO: Sign in
+                var result = await _signinManager.PasswordSignInAsync(user, password, false, false);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return RedirectToAction("Index");
         }
+
+        public IActionResult Login() => View();
+        public IActionResult Register() => View();
+
+        [HttpPost]
         public async Task<IActionResult> Register(string username, string password)
         {
             IdentityUser user = new IdentityUser
@@ -74,8 +87,18 @@ namespace IdentityExample.Controllers
             var result = await _userManager.CreateAsync(user, password);
             if (result.Succeeded)
             {
-                //TODO: sign user here
+                var signinResult = await _signinManager.PasswordSignInAsync(user, password, false, false);
+                if (signinResult.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signinManager.SignOutAsync();
             return RedirectToAction("Index");
         }
     }
