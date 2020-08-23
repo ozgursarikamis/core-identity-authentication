@@ -29,7 +29,9 @@ namespace AuthorizeApi
             }
             
             app.UseRouting();
-            app.UseAuthorization();
+
+            app.UseAuthentication(); // who are you?
+            app.UseAuthorization(); // are you allowed?
 
             app.UseEndpoints(endpoints =>
             {

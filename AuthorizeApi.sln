@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthorizeApi", "AuthorizeApi\AuthorizeApi.csproj", "{CC86C5D0-D26C-4310-A2B6-275D3C1BF429}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityExample", "IdentityExample\IdentityExample.csproj", "{AEEA9C93-145B-428F-8836-69B274C3374B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CC86C5D0-D26C-4310-A2B6-275D3C1BF429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC86C5D0-D26C-4310-A2B6-275D3C1BF429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC86C5D0-D26C-4310-A2B6-275D3C1BF429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEEA9C93-145B-428F-8836-69B274C3374B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEA9C93-145B-428F-8836-69B274C3374B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEA9C93-145B-428F-8836-69B274C3374B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEA9C93-145B-428F-8836-69B274C3374B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
