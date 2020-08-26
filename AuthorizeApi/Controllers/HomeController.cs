@@ -24,12 +24,20 @@ namespace AuthorizeApi.Controllers
             return View("Secret");
         }
 
+        [Authorize(Roles = "Admin")]
+        public IActionResult SecretRole()
+        {
+            return View("Secret");
+        }
+
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, "Bob"),
                 new Claim(ClaimTypes.Email, "bob@fmail.com"),
+                new Claim(ClaimTypes.DateOfBirth, "11/11/2000"),
+                new Claim(ClaimTypes.Role, "Admin"),
                 new Claim("Grandma.Says", "very nice boy"),
             };
             
