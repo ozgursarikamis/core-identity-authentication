@@ -1,9 +1,9 @@
 using System.Security.Claims;
 using AuthorizeApi.AuthorizationRequirements;
+using AuthorizeApi.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -41,6 +41,7 @@ namespace AuthorizeApi
             });
 
             services.AddScoped<IAuthorizationHandler, CustomRequireClaimHandler>();
+            services.AddScoped<IAuthorizationHandler, CookieJarAuthorizationHandler>();
 
             services.AddControllersWithViews(config => {
                 // Global authorization filter:
@@ -48,7 +49,7 @@ namespace AuthorizeApi
                 var defaultAuthPolicy = defaultAuthBuilder
                                 .RequireAuthenticatedUser().Build();
                                 
-                config.Filters.Add(new AuthorizeFilter());
+                // config.Filters.Add(new AuthorizeFilter());
             });
         }
 
