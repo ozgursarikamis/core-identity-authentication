@@ -9,12 +9,6 @@ namespace AuthorizeApi.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IAuthorizationService _authorizationService;
-        public HomeController(IAuthorizationService authorizationService)
-        {
-            _authorizationService = authorizationService;
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -65,15 +59,17 @@ namespace AuthorizeApi.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<IActionResult> DoStuff(){
+        public async Task<IActionResult> DoStuff(
+            [FromServices] IAuthorizationService authorizationService
+        ){
             
             var builder = new AuthorizationPolicyBuilder("Schema");
             var customPolicy = builder.RequireClaim("Hello").Build();
 
-            var authResult = await _authorizationService.AuthorizeAsync(HttpContext.User, customPolicy);
+            var authResult = await authorizationService.AuthorizeAsync(HttpContext.User, customPolicy);
             if (authResult.Succeeded)
             {
-                
+                return View("Index");
             }
             return View("Index");
         }
