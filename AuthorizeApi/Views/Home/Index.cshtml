@@ -19,6 +19,14 @@
 </div>
 
 <div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2>User is authenticated</h2>  
+    } else {
+        <h2>user is not authenticated</h2>  
+    }
+    
 @if ((await authorizationService.AuthorizeAsync(User, "Claim.DoB")).Succeeded)
 {
     <h1>User has Dob Claims</h1>

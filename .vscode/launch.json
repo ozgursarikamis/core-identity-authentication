@@ -9,9 +9,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/IdentityExample/bin/Debug/netcoreapp3.1/IdentityExample.dll",
+            "program": "${workspaceFolder}/AuthorizeApi/bin/Debug/netcoreapp3.1/AuthorizeApi.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/IdentityExample",
+            "cwd": "${workspaceFolder}/AuthorizeApi",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",
