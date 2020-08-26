@@ -1,6 +1,9 @@
 @{
     Layout = null;
 }
+@using Microsoft.AspNetCore.Authorization;
+
+@inject IAuthorizationService authorizationService;
 
 <!DOCTYPE html>
 
@@ -13,6 +16,13 @@
     <h1>Home Page</h1>
     <a href='@Url.Action("Secret")'>Secret</a>   <br />
     <a href='@Url.Action("SecretPolicy")'>Secret Policy</a>   
+</div>
+
+<div>
+@if ((await authorizationService.AuthorizeAsync(User, "Claim.DoB")).Succeeded)
+{
+    <h1>User has Dob Claims</h1>
+}
 </div>
 </body>
 </html>
