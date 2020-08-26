@@ -31,6 +31,7 @@ namespace AuthorizeApi.Controllers
             return View("Secret");
         }
 
+        [AllowAnonymous]
         public IActionResult Authenticate()
         {
             var grandmaClaims = new List<Claim>
